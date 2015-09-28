@@ -1,0 +1,161 @@
+<script>
+
+    $(window).load(function() {
+        move();
+
+    })
+
+</script>
+
+<div class="main-banner">
+
+
+
+</div>
+
+<div class="some-button">
+  <button class="btn  btn-sm btn-primary " onclick="window.location.href='http://www.baidu.com'">立即求职</button>
+
+</div>
+
+</div>
+
+<div id="main-container" class="main-container">
+<div  id="search-banner" class="search-banner">
+
+<div class="search-panel">
+<div class="search-bar">
+  <div class="input-group">
+      <span class="input-group-btn">
+   <div id="append_options" class="append_options">
+     <p id="txtKeyWords_opts" class="append_optionsbox">
+      <i  class="fa fa-search"></i>
+       <i class="fa fa-angle-down"></i>
+     </p>
+     <div  id="txtKeyWords_opts_layer" style="display: none"class="append_optionsbox_layer ">
+
+       <div class="append_optionsbox_droplayer" >
+         <p class="append_optionsbox_droplayer_tit">搜索范围</p>
+         <ul class="all_optionscon ">
+           <li id="fa fa-check-square-o"><a href="javascript:;"><i class="fa fa-check-square-o"></i>&nbsp;&nbsp;&nbsp;&nbsp;职位名和公司名</a></li>
+           <li id="fa fa-street-view"><a href="javascript:;"><i class="fa fa-street-view"></i>&nbsp;&nbsp;&nbsp;&nbsp;职位名</a></li>
+           <li  id="fa fa-suitcase"><a href="javascript:;"><i class="fa fa-suitcase"></i>&nbsp;&nbsp;&nbsp;公司名</a></li>
+           <li id="fa fa-search"><a href="javascript:;" >  <i  class="fa fa-search"></i>&nbsp;&nbsp;&nbsp;全部</a></li>
+         </ul>
+       </div>
+     </div>
+   </div>
+      </span>
+    <input type="text" class="form-control" style="width: 82%" placeholder="Search for...">
+ <span class="">
+        <button class="btn btn-primary" style="margin-left: 30px;width: 100px" type="button">Go!</button>
+      </span>
+  </div><!-- /input-group -->
+</div>
+  <div class="search-bar">
+
+    <div class="row" style="height: 40px;">
+      <div class="col-xs-5">
+        <div class="input-group">
+      <span class="input-group-btn">
+         <div  class="location-options" >
+           <p style="float: left"> 选择地址</p>
+           <p style="float: right"><i class="fa fa-angle-down"></i></p>
+         </div>
+      </span>
+
+        </div>
+      </div>
+      <div class="col-xs-5">
+        <div class="input-group">
+      <span class="input-group-btn">
+         <div  class="work-options">
+         <p style="float: left"> 选择岗位</p>
+           <p style="float: right"><i class="fa fa-angle-down"></i></p>
+         </div>
+      </span>
+
+        </div>
+      </div>
+
+      <span >
+        <div  class="col-xs-2" style="margin-top: 8px;padding-left: 30px;">
+        <a href="javascript:;" id="more-options" style="color:white;">更多选择<i class="fa fa-angle-down"></i></a>
+        </div>
+      </span>
+    </div>
+
+  </div>
+
+  <div id="more-search-bar" class="search-bar" style="display: none">
+
+    <div class="row" style="height: 40px;">
+      <div class="col-xs-5">
+        <div class="input-group">
+      <span class="input-group-btn">
+         <div  class="study-options" >
+           <p style="float: left"> 选择学历</p>
+           <p style="float: right"><i class="fa fa-angle-down"></i></p>
+         </div>
+        <div class="down-menu study-down-menu" >
+          <div class="append_optionsbox_droplayer" >
+            <ul class="all_optionscon ">
+              <li id="fa fa-check-square-o"><a href="javascript:;"><p><i class="fa fa-check-square-o"></i>&nbsp;&nbsp;&nbsp;&nbsp;本科</p></a></li>
+              <li id="fa fa-street-view"><a href="javascript:;"><p><i class="fa fa-street-view"></i>&nbsp;&nbsp;&nbsp;&nbsp;研究生</p></a></li>
+              <li  id="fa fa-suitcase"><a href="javascript:;"><p><i class="fa fa-suitcase"></i>&nbsp;&nbsp;&nbsp;硕士及以上</p></a></li>
+              <li id="fa fa-search"><a href="javascript:;" > <p><i  class="fa fa-search"></i>&nbsp;&nbsp;&nbsp;全部</p> </a></li>
+            </ul>
+          </div>
+        </div>
+
+      </span>
+
+        </div>
+      </div>
+      <div class="col-xs-5">
+        <div class="input-group">
+      <span class="input-group-btn">
+         <div  class="style-options">
+           <p style="float: left"> 兼职/全职</p>
+           <p style="float: right"><i class="fa fa-angle-down"></i></p>
+         </div>
+          <div class="down-menu style-down-menu" >
+
+            <div class="append_optionsbox_droplayer" >
+
+              <ul class="all_optionscon ">
+                <li id="fa fa-check-square-o"><a href="javascript:;"><p><i class="fa fa-check-square-o"></i>&nbsp;&nbsp;&nbsp;&nbsp;兼职</p></a></li>
+                <li id="fa fa-street-view"><a href="javascript:;"><p><i class="fa fa-street-view"></i>&nbsp;&nbsp;&nbsp;&nbsp;全职</p></a></li>
+
+                <li id="fa fa-search"><a href="javascript:;" ><p> <i  class="fa fa-search"></i>&nbsp;&nbsp;&nbsp;全部</p></a></li>
+              </ul>
+            </div>
+          </div>
+      </span>
+
+        </div>
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+
+
+</div>
+</div>
+
+<div class="content-container">
+<%=render "/welcome/item"%>
+  <%=render "/welcome/info"%>
+  <div style="clear:both;"></div>
+</div>
+  <div style="clear:both;"></div>
+</div>
+
+
+
+</div>
+

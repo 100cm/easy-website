@@ -1,0 +1,429 @@
+// Place all the styles related to the welcome controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@mixin test{
+
+border: 1px solid red;
+
+
+}
+
+
+@mixin item-background{
+
+  background-color: white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+@mixin background-color{
+  background-color: #34495E;
+}
+
+a{
+  cursor: pointer;
+
+}
+@mixin font-color{
+  color:#888888;
+
+}
+@mixin color{
+  color:#16a085;
+}
+body{
+  padding: 0px;
+  margin: 0px;
+
+  position: relative;
+  background-color: #F4F4F4;
+}
+
+  .custom {
+    width: 100%;
+    padding-left: 120px;
+    padding-right: 120px;
+    border-radius: 0px;
+    background-color: #2C3E50;
+    .a {
+      color: white;
+    }
+  }
+
+  .navbar-brand {
+    color: white;
+    margin-right: 50px;
+
+  }
+
+  .active {
+    background-color: #16a085;
+    a {
+      color: white;
+    }
+  }
+
+  .not-active {
+    a {
+      color: #888888;
+
+    }
+    :hover {
+      color: white;
+    }
+
+  }
+  .navbar-right > li {
+    a {
+      cursor: pointer;
+      color: #888888;;
+    }
+    :hover {
+
+      color: white;
+    }
+
+  }
+
+  .main-banner {
+    position: relative;
+    z-index: -1;
+    width: 100%;
+    height: 296px;
+    background: #FFF url("/assets/bg_banner.jpg") no-repeat scroll center top;;
+
+    .some-button {
+
+      width: 100%;
+      height: 40px;
+
+    }
+
+  }
+  .search-banner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+  }
+  .search-panel {
+    padding: 30px;
+
+    height: 100%;
+    @include background-color;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 0px auto;
+
+  }
+  .button-middle {
+    cursor: pointer;
+
+  }
+  .some-button {
+
+    z-index: 999;
+    position: relative;
+    margin-top: -100px;
+    text-align: center;
+  }
+
+  .search-bar {
+
+    margin-bottom: 10px;
+    @include background-color;
+    width: 100%;
+    height: 50%;
+
+  }
+  #big-select {
+    width: 300px;
+
+  }
+  .append_options {
+    background: white;
+    padding-top: 2px;
+    width: 42px;
+    height: 40px;
+    padding-left: 2px;
+    @include font-color;
+    border-left: 2px solid #bdc3c7;
+    border-bottom: 2px solid #bdc3c7;
+    border-top: 2px solid #bdc3c7;
+    border-right: 1px dotted #79C9EE;
+    float: left;
+    position: relative;
+    margin-bottom: 1px;
+  }
+  .append_optionsbox {
+    cursor: pointer;
+    width: 42px;
+    height: 36px;
+    font-size: 18px;
+    :focus {
+      background-color: #16a085;
+    }
+  }
+  .append_optionsbox_layer {
+    z-index: 99;
+    position: absolute;
+    left: -2px;
+    top: 44px;
+    width: 140px;
+    background: #F7FAFB none repeat scroll 0% 0%;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    border: 2px solid #bdc3c7;
+  }
+  .append_optionsbox_droplayer .append_optionsbox_droplayer_tit {
+    color: #16a085;
+    margin-bottom: 0px;
+    //background: #bdc3c7 none repeat scroll 0% 0%;
+    line-height: 20px;
+    padding: 0px 0px 0px 5px;
+  }
+  .append_optionsbox_droplayer ul {
+    padding: 0px;
+    li {
+      list-style-type: none;
+      font-size: 14px;
+      vertical-align: top;
+      line-height: 36px;
+      height: 36px;
+    }
+  }
+  .append_optionsbox_droplayer ul li a:hover {
+    color: white;
+    text-decoration: none;
+    background: #16a085;
+    transition: background-color 0.3s ease-in 0s, background-color 0.3s ease-out 0s;
+  }
+
+  .append_optionsbox_droplayer ul li a {
+    vertical-align: top;
+    color: #333;
+    display: block;
+    *zoom: 1;
+  }
+  .work-options {
+    padding: 6px;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 5px;
+    border: 2px solid #bdc3c7;
+    height: 40px;
+
+  }
+  .study-options {
+    @extend .work-options
+  }
+  .style-options {
+    @extend .work-options
+  }
+  .location-options {
+    @extend .work-options
+  }
+  #more-options :hover {
+
+    @include color;
+
+  }
+  .main-container {
+    width: 1024px;
+    margin: 0px auto;
+    position: relative;
+
+    //z-index: 1;
+
+    margin-top: -190px;
+
+  }
+  .ad-item {
+
+    margin-bottom: 40px;
+    position: relative;
+    background: white;
+
+    margin-top: 40px;
+
+  }
+  .ad-img {
+    border: 0.5px solid #F2F2F2;
+    margin: auto;
+    margin-top: 20px;
+
+  }
+  .info-item {
+    margin-bottom: 20px;
+    border: 1px solid #F2F2F2;
+  }
+
+  .info-bar {
+    background: #F2F2F2 none repeat scroll 0% 0%;
+    color: black;
+    border-radius: 5px 5px 0px 0px;
+    height: 30px;
+    padding-top: 3px;
+    font-size: 16px;
+    font-weight: 100;
+
+  }
+  .panel {
+
+    margin-top: 20px;
+    border-right: 1px dotted #F2F2F2;
+    padding-right: 5px;
+    border: 1px solid red;
+  }
+  .panel-heading {
+
+  }
+  .panel-body {
+
+    ul {
+      padding: 0px;
+    }
+    li {
+      list-style-type: none;
+      line-height: 14px;
+      font-size: 12px;
+      padding: 8px 0;
+      a {
+
+        margin-left: 20px;
+        margin-right: 20px;
+      }
+      i {
+        float: right;
+      }
+      span {
+        float: left;
+      }
+
+    }
+  }
+  .panel-body ul li a:hover {
+    color: #16a085;
+
+  }
+  .content-container {
+    background-color: white;
+    padding: 0 10px;
+    @include item-background;
+  }
+  #img-panel-body {
+    img {
+      width: 120px;
+      height: 120px;
+    }
+  }
+  .modal-content {
+    margin-top: 200px;
+    z-index: 9999;
+
+  }
+
+  .down-menu {
+    display: none;
+    border: 2px solid #bdc3c7;
+    position: absolute;
+    background-color: white;
+    width: 100%;
+    .study-down-menu {
+
+      display: none;
+
+    }
+    .style-down-menu {
+      display: none;
+
+    }
+  }
+
+  #footer {
+    text-align: center;
+    font-size: 12px;
+    margin-top: 220px;
+    border-top: 1px solid #E0E0E0;
+    margin-bottom: -25px;
+    bottom: 0;
+    width: 100%;
+    @include background-color;
+    color: #999;
+    line-height: 3.5;
+    clear: both;
+  }
+
+
+@media (max-width: 1024px)and (min-width: 768px){
+  body{
+  width: 1024px;
+}
+
+}
+
+@media (max-width: 768px) {
+
+
+  .search-banner{
+    display: none;
+
+  }
+  .main-container{
+    width: 100%;
+  }
+  .custom{
+    width: 100%;
+    padding: 0px;
+    color: white;
+    @include  background-color;
+
+  }
+  .navbar-left > li > a{
+    color: whitesmoke;
+  }
+  .navbar-brand{
+    color: white;
+  }
+  .some-button{
+    display: none;
+  }
+  .ad-img{
+    margin-top: 20px;
+    img{
+      width: 100%;
+    }
+
+  }
+  #footer {
+    text-align: center;
+    font-size: 12px;
+
+    border-top: 1px solid #E0E0E0;
+    margin-bottom: -25px;
+    bottom:0;
+    width: 100%;
+    @include background-color;
+    color: #999;
+    line-height: 3.5;
+    clear: both;
+  }
+  .active{
+    background-color: #16a085;
+
+  }
+.not-active {
+
+a:hover{
+color: #16a085;
+
+}
+
+}
+
+
+
+}
+
+
+
+
+
+
