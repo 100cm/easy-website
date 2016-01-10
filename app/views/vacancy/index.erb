@@ -1,0 +1,129 @@
+
+
+<div class="container">
+
+  <div class="vacancy">
+  <div class="col-lg-8 ">
+      <div class="module">
+
+        <form method="post" action="/vacancy/search">
+        <div class="searchConditionItem">
+          <label>查找职业</label>
+          <div class="input-group" >
+            <input type="text" name="search" class="large form-control" placeholder="职位/关键字">
+      <span class="input-group-btn">
+        <button class="btn btn-primary" type="submit">搜索</button>
+      </span>
+          </div>
+        </div>
+        <div class="searchConditionItem">
+          <label >选择城市</label>
+          <input style="display: none;" name="tagsinput"  id="tagsinput" class="tagsinput" value="全部">
+
+        </div>
+
+        <div class="searchConditionItem">
+
+          <div >
+            <label>职位类型</label>
+          </div>
+          <div class="radio-inline">
+          <label class="radio checked "><span class="icon"></span><span class="icon-to-fade"></span>
+            <input name="degree" id="optionsRadios1" checked value="本科" type="radio">
+            本科
+          </label>
+          <label class="radio checked"><span class="icon"></span><span class="icon-to-fade"></span>
+            <input name="degree" id="optionsRadios1" value="不限"type="radio">
+            不限
+          </label>
+
+       <div class="clearfix"></div>
+
+
+          </div>
+
+
+
+          <div> </div>
+
+        </div>
+
+        </form>
+      </div>
+
+      <div class="module">
+
+
+        <%@jobs.each do |j| %>
+        <div class="result-list clearfix">
+
+          <dt><img src="http://image0.lietou-static.com/middle_/5638751145cef1cac157746205a.png" alt="" height="80" width="160"></dt>
+<dd>
+
+  <h3><a href="/vacancy/show?id=<%=j.id %>">  <% if j.try(:highlight).try(:job) %>
+          <%= sanitize(j.highlight.job[0], tags: %w(mark)) %>
+    <% else %>
+        <%= j.job%>
+    <% end %></a>
+  <span class="label"><%=j.degree %></span></h3>
+  <p><%=j.company %></p>
+  <p><%=j.locate %></p>
+</dd>
+        </div>
+            <%end%>
+
+        <div><%= paginate @jobs ,:theme => 'twitter-bootstrap-3' %></div>
+
+      </div>
+
+    </div>
+
+
+    <div class="col-lg-4 ">
+
+      <div class="module"  style="width: 276px" id="hot-job">
+
+<h2 class="module-header" ><em></em>查询最热的职业</h2>
+
+        <% @hotjob.each do|h| %>
+        <div class="result-list clearfix ">
+          <dt><img src="/assets/company2.png" width="100%" height="100%"></dt>
+          <dd>
+
+            <h3><a><%=h.job %></a></h3>
+            <p><%=h.company%></p>
+          </dd>
+
+        </div>
+<%end%>
+
+      </div>
+      <div class="module"  style="width: 276px" id="hot-job">
+
+        <h2 class="module-header" ><em></em>推荐的职业</h2>
+
+        <% @goodjob.each do|h| %>
+            <div class="result-list clearfix ">
+              <dt><img src="/assets/company.jpg" width="100%" height="100%"></dt>
+              <dd>
+
+                <h3><a><%=h.job %></a></h3>
+                <p><%=h.company%></p>
+              </dd>
+
+            </div>
+        <%end%>
+
+      </div>
+
+
+    </div>
+
+
+
+
+</div>
+
+
+
+</div>

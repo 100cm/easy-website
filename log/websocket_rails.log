@@ -1,0 +1,15 @@
+# Logfile created on 2016-01-09 19:03:18 +0800 by logger.rb/47272
+I [2016-01-09 19:03:18.701] [[32mConnectionManager[0m] Connection opened: #<Connection::c660a0faf75719ea8429>
+I [2016-01-09 19:03:38.702] [[32mConnectionManager[0m] Connection closed: #<Connection::c660a0faf75719ea8429>
+I [2016-01-09 19:03:48.689] [[32mConnectionManager[0m] Connection closed: #<Connection::c660a0faf75719ea8429>
+I [2016-01-09 19:04:03.393] [[32mConnectionManager[0m] Connection opened: #<Connection::a7ad383c9fcf30c02b7e>
+I [2016-01-09 19:04:05.576] [[32mConnectionManager[0m] Connection closed: #<Connection::a7ad383c9fcf30c02b7e>
+I [2016-01-09 19:04:07.460] [[32mConnectionManager[0m] Connection opened: #<Connection::e3063f3ba0d77fd25702>
+I [2016-01-09 19:04:27.465] [[32mConnectionManager[0m] Connection closed: #<Connection::e3063f3ba0d77fd25702>
+I [2016-01-09 19:04:37.455] [[32mConnectionManager[0m] Connection closed: #<Connection::e3063f3ba0d77fd25702>
+I [2016-01-09 19:05:50.291] [[32mConnectionManager[0m] Connection opened: #<Connection::ac6afc76be74751c91d7>
+I [2016-01-09 19:06:10.293] [[32mConnectionManager[0m] Connection closed: #<Connection::ac6afc76be74751c91d7>
+I [2016-01-09 19:06:20.289] [[32mConnectionManager[0m] Connection closed: #<Connection::ac6afc76be74751c91d7>
+I [2016-01-09 19:08:19.415] [[32mConnectionManager[0m] Connection opened: #<Connection::5faecee9145a1dfcd36d>
+I [2016-01-09 19:08:39.415] [[32mConnectionManager[0m] Connection closed: #<Connection::5faecee9145a1dfcd36d>
+I [2016-01-09 19:08:49.403] [[32mConnectionManager[0m] Connection closed: #<Connection::5faecee9145a1dfcd36d>

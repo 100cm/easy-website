@@ -1,0 +1,66 @@
+<div class="container">
+
+
+
+  <div class="vacancy">
+
+    <div class="module">
+
+
+      <div class="module-header">
+
+        全部投递
+
+      </div>
+      <%@interview.each do|i| %>
+          <%job =Job.find_by_id(i.resume_id)
+            user =User.find_by_id(i.user_id)
+          %>
+          <div class="result-list clearfix">
+
+            <dt><img src="http://image0.lietou-static.com/middle_/5638751145cef1cac157746205a.png" alt="" height="80" width="160"></dt>
+            <dd>
+
+              <h3><a href="/vacancy/show?id=<%=job.id %>">
+                <%=job.job%>
+
+              </a>
+                <span class="label"><%=job.degree %></span></h3>
+              <p><%=user.email %></p>
+              <p> <a href="/resume/show?user_id=<%=user.id %>&resume_id=<%=i.resume_id%>">简历地址</a></p>
+              <p>投递时间:<%=i.created_at %></p>
+            </dd>
+
+            <div style="float: right">
+
+              <% if i.is_invited?
+
+                   a="已邀请面试"
+                 elsif i.is_passed?
+
+                   a="对方已收到offer"
+
+                 elsif i.is_refused?
+
+                   a="已拒绝"
+
+                   else
+
+                   a="请查看简历"
+
+                 end
+              %>
+              <button disabled class="btn btn-primary"><%=a %><span class="fa fa-check"></span> </button>
+
+
+            </div>
+
+
+          </div>
+
+      <%end%>
+
+    </div>
+  </div>
+
+</div>

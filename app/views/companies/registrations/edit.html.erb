@@ -1,0 +1,40 @@
+<script src="/assets/amazeui.min.js"></script>
+<div class="admin-content" style="padding-left: 110px;padding-right: 110px;padding-top:110px;min-height: 700px">
+<h2>修改资料</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put ,:class=>'am-form'}) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true ,:id => 'doc-ipt-pwd-1'%>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :新密码 %> <i>不想改就留空</i><br />
+    <%= f.password_field :password, autocomplete: "off",:id => 'doc-ipt-pwd-1' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :新密码确认 %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" ,:id => 'doc-ipt-pwd-1'%>
+  </div>
+
+  <div class="field">
+    <%= f.label :当前密码 %> <i>(我们需要您的当前密码来确认是否有效)</i><br />
+    <%= f.password_field :current_password, autocomplete: "off" ,:id => 'doc-ipt-pwd-1'%>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "确认修改" , :class=>"am-btn am-btn-primary am-btn-sm" ,:style=>"margin-top:50px "%>
+  </div>
+<% end %>
+
+
+
+
+</div>

@@ -1,0 +1,159 @@
+<div class="container">
+
+
+  <div class="vacancy">
+
+<div class="col-xs-12">
+
+<div class="module">
+
+    <div class="resume-panel ">
+      <div class="panel-header clearfix">
+        <h4>基本信息</h4>
+        <% if company_signed_in?%>
+            <% if @Interview[0].is_invited %>
+                <a disabled> 已邀请面试</a>
+             <%elsif @Interview[0].is_refused  %>
+
+                <a disabled class="btn-default"> 已拒绝 </a>
+
+                <% else%>
+        <a href="/interview/invite/<%=@Interview[0].id %>" class="btn btn-primary">邀请面试</a>
+        <a href="/interview/refuse/<%=@Interview[0].id%>" class="btn btn-default ">拒绝</a>
+
+            <%end%>
+        <%end%>
+
+      </div>
+
+
+      <ul class="info-list clearfix" >
+
+            <li> <label>姓名：</label><span><%=@base_info.name %></span></li>
+            <li class="clearfix"> <label>年龄：</label><span><%=@base_info.age %></span></li>
+            <li> <label>性别：</label><span><%=@base_info.sex %></span></li>
+            <li> <label>体重：</label><span><%=@base_info.weight%></span></li>
+            <li> <label>户口所在地：</label><span><%=@base_info.location %></span></li>
+            <li> <label>身份证号码：</label><span><%=@base_info.c_number %></span></li>
+            <li> <label>婚姻状况:</label><span><%=@base_info.is_married %></span></li>
+
+      </ul>
+
+
+
+
+    </div>
+
+    <div class="resume-panel grey-panel">
+
+      <div class="panel-header clearfix">
+        <h4>联系信息</h4>
+
+      </div>
+
+
+
+
+      <ul class="info-list clearfix" >
+
+            <li> <label>手机：</label><span><%= @contact.phone %></span></li>
+            <li> <label>QQ：</label><span><%= @contact.qq %></span></li>
+            <li> <label>邮箱：</label><span><%= @contact.email %></span></li>
+            <li> <label>通讯地址：</label><span><%= @contact.home %></span></li>
+            <li> <label>邮政编码：</label><span><%= @contact.postalcode %></span></li>
+
+      </ul>
+
+
+
+
+    </div>
+    <div class="resume-panel">
+
+      <div class="panel-header clearfix">
+        <h4>教育经历</h4>
+
+      </div>
+
+
+      <table class="table" >
+
+            <thead><tr>
+              <td>学校名称</td>
+              <td>专业名称</td>
+              <td>就读时间</td>
+              <td>学位</td>
+
+            </tr></thead>
+            <tbody>
+            <% @edu.each do |e|	  %>
+                <tr>
+                  <td><%=e.school %></td>
+                  <td><%=e.profession %></td>
+                  <td><%=e.begin_time %>-- <%=e.end_time %></td>
+                  <td><%=e.level %></td>
+                  <td> <button class="btn btn-xs btn-primary" onclick="edit_edu('<%=e.id %>')">编辑</button>
+                  </td>
+                </tr>
+
+            <% end %>
+
+            </tbody>
+
+
+
+      </table>
+
+
+
+    </div>
+
+    <div class="resume-panel grey-panel">
+      <div class="panel-header clearfix">
+        <h4>
+          实习经历
+        </h4>
+
+      </div>
+
+      <table class="table" >
+
+            <thead>
+            <tr>
+              <td>工作单位</td>
+              <td>工作名称</td>
+              <td>职位类型</td>
+              <td>在职时间</td>
+
+            </tr>
+            </thead>
+            <tbody>
+            <%@exp.each do |e| %>
+                <tr>
+                  <td><%=e.company %></td>
+                  <td><%=e.work %></td>
+
+                  <td><%=e.work_type %></td>
+                  <td><%=e.begin_time %>-<%=e.end_time%></td>
+
+
+                </tr>
+            <%end %>
+
+            </tbody>
+
+      </table>
+
+
+
+    </div>
+
+</div>
+
+
+</div>
+
+  </div>
+
+
+</div>

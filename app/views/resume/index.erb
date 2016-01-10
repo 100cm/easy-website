@@ -1,0 +1,631 @@
+<script type="text/javascript">
+    $(function(){
+
+        $( "#edit-exp-from" ).datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            numberOfMonths: 2,
+            onClose: function( selectedDate ) {
+                $( "#edit-exp-to" ).datepicker( "option", "minDate", selectedDate );
+            }
+        });
+        $( "#edit-exp-to" ).datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            numberOfMonths: 2,
+            onClose: function( selectedDate ) {
+                $( "#edit-exp-from" ).datepicker( "option", "maxDate", selectedDate );
+            }
+        });
+        $( "#edit-edu-from" ).datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            numberOfMonths: 2,
+            onClose: function( selectedDate ) {
+                $( "#edit-edu-to" ).datepicker( "option", "minDate", selectedDate );
+            }
+        });
+        $( "#edit-edu-to" ).datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            numberOfMonths: 2,
+            onClose: function( selectedDate ) {
+                $( "#edit-edu-from" ).datepicker( "option", "maxDate", selectedDate );
+            }
+        });
+        $( "#from" ).datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            numberOfMonths: 2,
+            onClose: function( selectedDate ) {
+                $( "#to" ).datepicker( "option", "minDate", selectedDate );
+            }
+        });
+        $( "#to" ).datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            numberOfMonths: 2,
+            onClose: function( selectedDate ) {
+                $( "#from" ).datepicker( "option", "maxDate", selectedDate );
+            }
+        });
+        $( "#work-from" ).datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            numberOfMonths: 2,
+            onClose: function( selectedDate ) {
+                $( "#work-to" ).datepicker( "option", "minDate", selectedDate );
+            }
+        });
+        $( "#work-to" ).datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            numberOfMonths: 2,
+            onClose: function( selectedDate ) {
+                $( "#work-from" ).datepicker( "option", "maxDate", selectedDate );
+            }
+        });
+
+
+
+        $( "#datepicker , #datepicker1" ).datepicker({
+            changeMonth: true,
+            changeYear: true
+        });//日期修改年份
+
+    });
+</script>
+<script>
+
+
+
+    //下面用于图片上传预览功能
+    function setImagePreview(avalue) {
+        var docObj=document.getElementById("doc");
+
+        var imgObjPreview=document.getElementById("preview");
+        if(docObj.files &&docObj.files[0])
+        {
+//火狐下，直接设img属性
+            imgObjPreview.style.display = 'block';
+            imgObjPreview.style.width = '150px';
+            imgObjPreview.style.height = '180px';
+//imgObjPreview.src = docObj.files[0].getAsDataURL();
+
+//火狐7以上版本不能用上面的getAsDataURL()方式获取，需要一下方式
+            imgObjPreview.src = window.URL.createObjectURL(docObj.files[0]);
+        }
+        else
+        {
+//IE下，使用滤镜
+            docObj.select();
+            var imgSrc = document.selection.createRange().text;
+            var localImagId = document.getElementById("localImag");
+//必须设置初始大小
+            localImagId.style.width = "150px";
+            localImagId.style.height = "180px";
+//图片异常的捕捉，防止用户修改后缀来伪造图片
+            try{
+                localImagId.style.filter="progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+                localImagId.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = imgSrc;
+            }
+            catch(e)
+            {
+                alert("您上传的图片格式不正确，请重新选择!");
+                return false;
+            }
+            imgObjPreview.style.display = 'none';
+            document.selection.empty();
+        }
+        return true;
+    }
+</script>
+
+
+<div class="container">
+
+  <div class="vacancy">
+
+
+    <div class="col-lg-4">
+
+      <div class="module">
+
+        <div class="resume-panel" style="text-align: center">
+
+          <label >我的头像</label>
+
+          <form action="/resume/create_avatar" method="post" enctype="multipart/form-data">
+          <ul class="info-list">
+            <li>
+              <% if !current_user.avatar.nil? %>
+              <img id="preview"    src="<%= current_user.avatar.url%>" width="120px" height="130px" style="display: block;margin: 0px auto">
+
+                  <% else %>
+                  <img id="preview"    src="/assets/unknow.jpg" width="120px" height="130px" style="display: block;margin: 0px auto">
+
+                  <% end %>
+              <input type="file"  name="file" style="display: none" id="doc"   onchange="javascript:setImagePreview();">
+            </li>
+          </ul>
+
+          <button  type="button" class="btn btn-primary" id="choose-file">选择文件</button>
+          <button class="btn btn-default" type="submit">保存头像 </button>
+          </form>
+        </div>
+
+
+      </div>
+
+      <div class="module"   id="hot-job">
+
+        <h2 class="module-header" ><em></em>其他给你推荐的职位</h2>
+
+        <% @goodjob.each do|h| %>
+            <div class="result-list clearfix ">
+              <dt><img src="/assets/company.jpg" width="100%" height="100%"></dt>
+              <dd>
+
+                <h3><a><%=h.job %></a></h3>
+                <p><%=h.company%></p>
+              </dd>
+
+            </div>
+        <%end%>
+
+      </div>
+
+
+    </div>
+
+
+
+    <div class="col-lg-8">
+
+      <div class="module">
+
+
+        <div class="resume-panel ">
+            <div class="panel-header clearfix">
+              <h4>基本信息</h4>
+                 <a  name="edit-a"> <i class="fa fa-edit">编辑</i></a>
+            </div>
+
+
+            <ul class="info-list clearfix" >
+              <% if !BaseInfo.find_by_user_id(current_user.id).nil? %>
+              <li> <label>姓名：</label><span><%=@base_info.name %></span></li>
+              <li class="clearfix"> <label>年龄：</label><span><%=@base_info.age %></span></li>
+              <li> <label>性别：</label><span><%=@base_info.sex %></span></li>
+              <li> <label>体重：</label><span><%=@base_info.weight%></span></li>
+              <li> <label>户口所在地：</label><span><%=@base_info.location %></span></li>
+              <li> <label>身份证号码：</label><span><%=@base_info.c_number %></span></li>
+              <li> <label>婚姻状况:</label><span><%=@base_info.is_married %></span></li>
+                  <% else%>
+              添加你的基本信息吧!
+<%end%>
+            </ul>
+            <ul class="info-list-form clearfix" style="display: none">
+               <form action="/resume/create_base_info" method="post" >
+                <li><label class="list-label">姓名:</label><span class="list-span"><input name="base_info[name]" value="<%= @base_info.name if !@base_info.nil? %>" class="form-control"></span></li>
+               <li><label class="list-label">年龄:</label><span class="list-span"><input  name="base_info[age]" value="<%= @base_info.age if !@base_info.nil? %>" class="form-control"></span></li>
+                <li><label class="list-label">性别:</label><span class="list-span">
+
+                  <div class="radio-inline">
+                   <label class="radio checked "><span class="icon"></span><span class="icon-to-fade"></span>
+                     <input name="base_info[sex]" id="optionsRadios1" value="男"  checked type="radio">
+                     男
+                   </label>
+                  <label class="radio checked"><span class="icon"></span><span class="icon-to-fade"></span>
+                    <input name="base_info[sex]" id="optionsRadios1" value="女" type="radio">
+                     女
+                  </label>
+                  </div>
+                </span>
+                </li>
+
+                <li> <label class="list-label">体重:</label><span class="list-span"><input name="base_info[weight]"   value="<%= @base_info.weight if !@base_info.nil? %>" class="form-control"></span></li>
+               <li> <label class="list-label">身份证号码:</label><span class="list-span"><input name="base_info[c_number]"  value="<%= @base_info.c_number if !@base_info.nil? %>" class="form-control" type="number"></span></li>
+
+                <li><label class="list-label">地区</label><span class="list-span">
+                  <div id="content-wrap">
+          <div id="content-left" class="demo">
+
+
+              <div class="infolist">
+
+                <lable>所在地区：</lable>
+                <div class="liststyle">
+                                <span id="Province">
+                                    <i><%= @base_info.province if !@base_info.nil? %></i>
+                                    <ul>
+                                      <li><a href="javascript:void(0)" alt="请选择省份"><%= @base_info.province if !@base_info.nil? %></a></li>
+                                    </ul>
+                                    <input type="hidden" name="cho_Province"  value="<%= @base_info.province if !@base_info.nil? %>">
+                                </span>
+                                <span id="City">
+                                    <i><%= @base_info.city if !@base_info.nil? %></i>
+                                    <ul>
+                                      <li><a href="javascript:void(0)" alt="请选择城市"><%= @base_info.city if !@base_info.nil? %></a></li>
+                                    </ul>
+                                    <input type="hidden" name="cho_City"  value="<%= @base_info.city if !@base_info.nil? %>">
+                                </span>
+                                <span id="Area">
+                                    <i><%= @base_info.area if !@base_info.nil? %></i>
+                                    <ul>
+                                      <li><a href="javascript:void(0)" alt="请选择地区"><%= @base_info.area if !@base_info.nil? %></a></li>
+                                    </ul>
+                                    <input type="hidden" name="cho_Area"  value="<%= @base_info.area if !@base_info.nil? %>">
+                                </span>
+                </div>
+              </div>
+
+
+          </div>
+          <div id="content-right"></div>
+        </div>
+
+                </span></li>
+               <li><label class="list-label">婚否:</label><span class="list-span">
+                  <div class="radio-inline">
+                    <label class="radio checked "><span class="icon"></span><span class="icon-to-fade"></span>
+                      <input name="base_info[is_married]" id="optionsRadios1" value="男"  checked type="radio">
+                      是
+                    </label>
+                    <label class="radio checked"><span class="icon"></span><span class="icon-to-fade"></span>
+                      <input name="base_info[is_married]" id="optionsRadios1" value="女" type="radio">
+                      否
+                    </label>
+                  </div>
+                </span>
+               </li>
+
+               <li><div class="input-group">
+                 <button type="button" name="saveButton" class="btn btn-primary">保存</button>
+                 <button type="button" name="cancelButton" class="btn btn-default">取消</button>
+
+               </div></li>
+</form>
+             </ul>
+
+
+
+        </div>
+
+        <div class="resume-panel grey-panel">
+
+          <div class="panel-header clearfix">
+            <h4>联系信息</h4>
+            <a  name="edit-a"> <i class="fa fa-edit">编辑</i></a>
+          </div>
+
+
+
+
+            <ul class="info-list clearfix" >
+              <%if !@contact.nil? %>
+              <li> <label>手机：</label><span><%= @contact.phone %></span></li>
+              <li> <label>QQ：</label><span><%= @contact.qq %></span></li>
+              <li> <label>邮箱：</label><span><%= @contact.email %></span></li>
+              <li> <label>通讯地址：</label><span><%= @contact.home %></span></li>
+              <li> <label>邮政编码：</label><span><%= @contact.postalcode %></span></li>
+                   <%else %>
+
+              <li>请填写信息。</li>
+                <%end%>
+            </ul>
+
+            <ul class="info-list-form clearfix" style="display: none;">
+                  <form action="/resume/create_contact" method="post">
+
+                  <li> <label class="list-label">手机:</label><span class="list-span"><input name="contact[phone]"  value="<%= @contact.phone if !@contact.nil? %>" class="form-control"></span></li>
+                  <li> <label class="list-label">QQ:</label><span class="list-span"><input name="contact[qq]" value="<%= @contact.qq if !@contact.nil? %>" class="form-control"></span></li>
+                  <li> <label class="list-label">邮箱:</label><span class="list-span"><input name="contact[email]" value="<%= @contact.email if !@contact.nil? %>" class="form-control"></span></li>
+                  <li> <label class="list-label">通讯地址:</label><span class="list-span"><input name="contact[home]" value="<%= @contact.home if !@contact.nil? %>" class="form-control"></span></li>
+                  <li> <label class="list-label">邮政编码:</label><span class="list-span"><input name="contact[postalcode]"value="<%= @contact.postalcode if !@contact.nil? %>" class="form-control"></span></li>
+                  <li> <label class="list-label"></label><span class="list-span">
+                    <div class="input-group">
+                    <button type="button" name="saveButton" class="btn btn-primary">保存</button>
+
+                    <button type="button" name="cancelButton" class="btn btn-default">取消</button>
+                    </div>
+                      </span>
+              </li>
+
+                  </form>
+
+
+                </ul>
+
+
+        </div>
+
+        <div class="resume-panel">
+
+          <div class="panel-header clearfix">
+            <h4>教育经历</h4>
+            <a  name="edit-a"> <i class="fa fa-plus">添加</i></a>
+          </div>
+
+
+            <table class="table" >
+              <%if !@edu.empty?	 %>
+                  <thead><tr>
+                    <td>学校名称</td>
+                    <td>专业名称</td>
+                    <td>就读时间</td>
+                    <td>学位</td>
+                    <td>操作</td>
+                  </tr></thead>
+                  <tbody>
+                  <% @edu.each do |e|	  %>
+
+
+
+              <tr>
+                <td><%=e.school %></td>
+                <td><%=e.profession %></td>
+                <td><%=e.begin_time %>-- <%=e.end_time %></td>
+                <td><%=e.level %></td>
+                <td> <button class="btn btn-xs btn-primary" onclick="edit_edu('<%=e.id %>')">编辑</button>
+                  <%= link_to '删除',
+                              {:controller => "resume", :action => "delete_edu", :id => e.id,} ,
+                              :class => 'btn btn-xs btn-danger',
+                              :type =>'button',
+                              :data=>{:confirm =>"确认删除？"}
+                  %>
+
+                </td>
+              </tr>
+
+
+                      <% end %>
+                  </tbody>
+                  <% else %>
+
+                  请填写信息。
+
+                <%	end  %>
+
+            </table>
+
+
+          <ul  class="info-list-form" style="display: none">
+<form action="/resume/create_edu" method="post">
+
+            <li> <label class="list-label">就读学校:</label><span class="list-span"><input name="education[school]" class="form-control"></span></li>
+            <li> <label class="list-label">专业名称:</label><span class="list-span"><input name="education[profession]"  class="form-control"></span></li>
+            <li>
+
+            <label class="list-label">开始时间：</label>
+            <span class="list-span" ><input type="text" class="form-control" name="education[begin_time]"  id="from" class="test-style width150" /></span>
+              </li>
+            <li>
+
+            <label class="list-label">结束时间：</label>
+            <span class="list-span" ><input type="text"  class="form-control" name="education[end_time]"    id="to" class="test-style width150" /></span>
+            </li>
+            <li> <label class="list-label">学位:</label><span class="list-span"><input     name="education[level]" class="form-control"></span></li>
+            <li>
+                <div class="input-group">
+              <button  type="button" name="saveButton" class="btn btn-primary">保存</button>
+
+              <button type="button" name="cancelButton" class="btn btn-default">取消</button>
+                </div>
+            </li>
+</form>
+          </ul>
+
+        </div>
+        <div class="resume-panel grey-panel">
+          <div class="panel-header clearfix">
+            <h4>
+              实习经历
+            </h4>
+            <a name="edit-a"> <i  class="fa fa-plus">添加</i></a>
+            </div>
+
+            <table class="table" >
+              <%if !@exp.empty? %>
+              <thead>
+              <tr>
+                <td>工作单位</td>
+                <td>工作名称</td>
+                <td>职位类型</td>
+                <td>在职时间</td>
+                <td>操作</td>
+              </tr>
+              </thead>
+              <tbody>
+              <%@exp.each do |e| %>
+              <tr>
+                <td><%=e.company %></td>
+                <td><%=e.work %></td>
+
+                <td><%=e.work_type %></td>
+                <td><%=e.begin_time %>-<%=e.end_time%></td>
+                <td><button class="btn btn-xs btn-primary" data-toggle="modal" onclick="edit_exp('<%=e.id %>')">编辑</button>
+                  <%= link_to '删除',
+                              {:controller => "resume", :action => "delete_exp", :id => e.id,} ,
+                              :class => 'btn btn-xs btn-danger',
+                              :type =>'button',
+                              :data=>{:confirm =>"确认删除？"}
+                  %>
+                </td>
+
+              </tr>
+                  <%end %>
+
+              </tbody>
+                  <% else %>
+                    请输入信息
+
+                  <%end %>
+
+            </table>
+
+
+              <ul class="info-list-form" style="display: none">
+                <form method="post" action="/resume/create_exp">
+          <li> <label class="list-label">单位名称:</label><span class="list-span"><input name="experience[company]" class="form-control"></span></li>
+          <li> <label class="list-label">工作名称:</label><span class="list-span"><input name="experience[work]" class="form-control"></span></li>
+          <li>
+
+            <label class="list-label"> 开始时间：</label>
+            <span class="list-span" ><input type="text" class="form-control" name="experience[begin_time]"  id="work-from" class="test-style width150" /></span>
+          </li>
+          <li>
+
+            <label class="list-label">结束时间：</label>
+            <span class="list-span" ><input type="text"  class="form-control" name="experience[end_time]"  id="work-to" class="test-style width150" /></span>
+          </li>
+          <li> <label class="list-label">职业类型:</label><span class="list-span"><input  name="experience[work_type]"  class="form-control"></span></li>
+          <li>
+            <div class="input-group">
+              <button  type="button" name="saveButton" class="btn btn-primary">保存</button>
+
+              <button type="button" name="cancelButton" class="btn btn-default">取消</button>
+            </div>
+          </li>
+        </form>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="modal fade" id="exp-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">编辑工作经验</h4>
+      </div>
+      <form method="post" action="/resume/update_exp">
+      <div class="modal-body">
+
+        <ul class="info-list-form" >
+
+            <li style="display: none"> <label class="list-label">id:</label><span class="list-span"><input  readonly  id="update_exp_id" name="id" class="form-control"></span></li>
+
+            <li> <label class="list-label">单位名称:</label><span class="list-span"><input  id="update_exp_company" name="experience[company]" class="form-control"></span></li>
+            <li> <label class="list-label">工作名称:</label><span class="list-span"><input id="update_exp_work" name="experience[work]" class="form-control"></span></li>
+            <li>
+
+              <label class="list-label"> 开始时间：</label>
+              <span class="list-span" ><input type="text" class="form-control"   name="experience[begin_time]"  id="edit-exp-from" class="test-style width150" /></span>
+            </li>
+            <li>
+
+              <label class="list-label">结束时间：</label>
+              <span class="list-span" ><input type="text"  class="form-control" name="experience[end_time]"  id="edit-exp-to" class="test-style width150" /></span>
+            </li>
+            <li> <label class="list-label">职业类型:</label><span class="list-span"><input  id="update_exp_work_type" name="experience[work_type]"  class="form-control"></span></li>
+            <li>
+
+            </li>
+
+        </ul>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="submit" class="btn btn-primary">提交</button>
+      </div>
+      </form>
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="edu-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">编辑教育经验</h4>
+      </div>
+      <form action="/resume/update_edu" method="post">
+        <div class="modal-body">
+
+
+          <ul  class="info-list-form" >
+
+
+            <li style="display: none"> <label class="list-label">就读学校:</label><span class="list-span"><input  id="update_edu_id" name="id" readonly required class="form-control"></span></li>
+              <li> <label class="list-label">就读学校:</label><span class="list-span"><input id="update_edu_school"  name="education[school]" class="form-control"></span></li>
+              <li> <label class="list-label">专业名称:</label><span class="list-span"><input id="update_edu_profession"  name="education[profession]"  class="form-control"></span></li>
+              <li>
+
+                <label class="list-label">开始时间：</label>
+                <span class="list-span" ><input type="text" class="form-control"  name="education[begin_time]"  id="edit-edu-from" class="test-style width150" /></span>
+              </li>
+              <li>
+
+                <label class="list-label">结束时间：</label>
+                <span class="list-span" ><input type="text"  class="form-control"   name="education[end_time]"    id="edit-edu-to" class="test-style width150" /></span>
+              </li>
+              <li> <label class="list-label">学位:</label><span class="list-span"><input   id="update_edu_level"    name="education[level]" class="form-control"></span></li>
+
+
+          </ul>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+          <button type="submit" class="btn btn-primary">提交</button>
+        </div>
+      </form>
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>
+
+<script>
+
+  function edit_exp(id){
+
+
+      $.ajax({
+          url:'/resume/edit_exp',
+          data:{"id":id},
+          type:'get',
+          success:function(data){
+
+              $("#edit-exp-from").val(data.begin_time);
+              $("#edit-exp-to").val(data.end_time);
+              $("#update_exp_company").val(data.company);
+              $("#update_exp_id").val(id);
+              $("#update_exp_work").val(data.work);
+              $("#update_exp_work_type").val(data.work_type);
+              $("#exp-modal").modal("show");
+          }
+      })
+  }
+
+        function edit_edu(id){
+
+            $.ajax({
+
+                url: '/resume/edit_edu',
+                data: {"id":id},
+                type :'get',
+
+                success :function(data){
+                    $("#edit-edu-from").val(data.begin_time);
+                    $("#edit-edu-to").val(data.end_time);
+                    $("#update_edu_id").val(id);
+                    $("#update_edu_school").val(data.school);
+                    $("#update_edu_profession").val(data.profession);
+                    $("#update_edu_level").val(data.level);
+                    $("#edu-modal").modal("show")
+                }
+
+
+            })
+
+
+
+        }
+
+</script>

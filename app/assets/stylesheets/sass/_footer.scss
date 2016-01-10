@@ -1,12 +1,11 @@
 #footer {
   text-align: center;
   font-size: 12px;
-  margin-top: 220px;
+  bottom: 0px;
   border-top: 1px solid #E0E0E0;
-  margin-bottom: -25px;
   bottom:0;
   width: 100%;
-  @include background-color;
+  background: white;
   color: #999;
   line-height: 3.5;
   clear: both;

@@ -34,7 +34,7 @@ body{
   margin: 0px;
 
   position: relative;
-  background-color: #F4F4F4;
+
 }
 
   .custom {
@@ -140,7 +140,7 @@ body{
     background: white;
     padding-top: 2px;
     width: 42px;
-    height: 40px;
+    height: 34px;
     padding-left: 2px;
     @include font-color;
     border-left: 2px solid #bdc3c7;
@@ -228,7 +228,7 @@ body{
   .main-container {
     width: 1024px;
     margin: 0px auto;
-    position: relative;
+
 
     //z-index: 1;
 
@@ -294,6 +294,7 @@ body{
         float: right;
       }
       span {
+        min-width: 64px;
         float: left;
       }
 
@@ -304,7 +305,8 @@ body{
 
   }
   .content-container {
-    background-color: white;
+    background: #f5f7fa;
+
     padding: 0 10px;
     @include item-background;
   }
@@ -337,19 +339,7 @@ body{
     }
   }
 
-  #footer {
-    text-align: center;
-    font-size: 12px;
-    margin-top: 220px;
-    border-top: 1px solid #E0E0E0;
-    margin-bottom: -25px;
-    bottom: 0;
-    width: 100%;
-    @include background-color;
-    color: #999;
-    line-height: 3.5;
-    clear: both;
-  }
+
 
 
 @media (max-width: 1024px)and (min-width: 768px){

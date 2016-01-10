@@ -1,0 +1,198 @@
+.vacancy{
+
+  padding-top:20px;
+  width: 980px;
+  margin: 0px auto;
+}
+
+.vacancy-nav{
+
+  height: 30px;
+
+  width: 100%;
+
+ background: #494949;
+}
+
+
+.vacancy-nav-right{
+
+  margin-right: 100px;
+  float: right;
+
+
+  li{
+    float: left;
+    list-style-type: none;
+    height: 30px;
+    padding: 5px;
+
+    a{
+      text-decoration: none;
+      color: #999;
+      :hover{
+        color: white;
+
+      }
+
+    }
+  }
+}
+.navgite{
+
+
+  width: 980px;
+  height: 100%;
+  margin: 0px auto;
+  border-bottom: 4px solid #FFD800 ;
+  position: relative;
+  bottom: -4px;
+
+}
+
+.vacancy-header{
+
+  height: 87px;
+width: 100%;
+ border-bottom: 4px solid #B4DB58 ;
+background: white;
+
+}
+.logo{
+
+  width: 254px;
+  height: 100%;
+  float: left;
+
+}
+
+.vacancy-right-menu{
+
+  width: 700px;
+  height: 100%;
+float: right;
+  position: relative;
+
+  .active {
+
+    a{
+      border-bottom: 4px solid #FF942C;
+      color: $common-color;
+    }
+
+  }
+  ul{
+
+    position: relative;
+    right: 0px;
+    bottom: 0px;
+    font-size: 16px;
+    float: right;
+      height: 100%;
+li{
+  height: 100%;
+
+  display: inline-block;
+  padding: 0px 3px;
+  background: #FFF none repeat scroll 0% 0%;
+  float: left;
+  a{
+    text-decoration: none;
+    color: #333;
+    display: inline-block;
+    padding: 0px 20px;
+    line-height: 79px;
+
+  }
+  a:hover{
+    color: $hover-color;
+
+  }
+}
+  }
+
+}
+
+.title-info{
+
+  width: 620px;
+  height: 80px;
+  background-color: #34495E;
+  position: relative;
+  left: -15px;
+  top: 18px;
+  padding-right:20px;
+  color: white;
+
+h2, h4{
+  padding:8px 20px ;
+
+
+}
+
+}
+.title-triangle{
+
+  width: 15px;
+  position: absolute;
+  bottom: -7px;
+  display: block;
+  border-bottom: 8px solid transparent;
+  border-right: 15px solid #2C3E50;
+
+}
+.job-main{
+
+  margin-top:40px ;
+
+
+}
+
+.left-main{
+
+  float:left;
+  padding: 12px;
+}
+
+.right-main{
+
+  float: right;
+  padding-right: 15px;
+}
+
+.duty{
+
+  text-align: justify;
+  word-wrap: break-word;
+  line-height: 25px;
+  padding: 10px  12px;
+  font-size: 12px;
+
+}
+
+.introduce{
+
+  text-align: justify;
+  word-wrap: break-word;
+  line-height: 25px;
+  padding: 10px 12px;
+  font-size: 12px;
+}
+.duty-title{
+
+margin-top: 20px;
+  border-bottom: dashed 1px #888888;
+padding: 5px;
+  line-height: 20px;
+  color: rgb(22, 160, 133);
+
+  h4{
+
+  }
+}
+
+.salary{
+
+  color: #ff7f00;
+
+}

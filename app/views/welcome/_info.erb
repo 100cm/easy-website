@@ -12,11 +12,10 @@
 
 <div class="panel-body">
   <ul class="">
-    <li><span>北京</span><a>租赁公司总经理</a><i>50-70万</i></li>
-    <li><span>上海</span><a>项目经理</a><i>50-70万</i></li>
-    <li><span>南京</span><a>java架构师</a><i>50-70万</i></li>
-    <li><span>深圳</span><a>java程序员</a><i>50-70万</i></li>
-    <li><span>苏州</span><a>商品经理</a><i>50-70万</i></li>
+
+    <% @jingying.each do |j|%>
+        <li><span><%=j.locate%></span><a href="/vacancy/show?id=<%=j.id %>"><%=j.job %></a><i><%=j.salary %></i></li>
+ <% end %>
 
 
   </ul>
@@ -32,11 +31,9 @@
 
       <div class="panel-body">
         <ul class="">
-          <li><span>北京</span><a>租赁公司总经理</a><i>50-70万</i></li>
-          <li><span>上海</span><a>项目经理</a><i>50-70万</i></li>
-          <li><span>南京</span><a>java架构师</a><i>50-70万</i></li>
-          <li><span>深圳</span><a>java程序员</a><i>50-70万</i></li>
-          <li><span>苏州</span><a>商品经理</a><i>50-70万</i></li>
+          <% @mishu.each do |j|%>
+              <li><span><%=j.locate%></span><a href="/vacancy/show?id=<%=j.id %>"><%=j.job %></a><i><%=j.salary %></i></li>
+          <% end %>
 
 
         </ul>
@@ -52,11 +49,10 @@
 
       <div class="panel-body">
         <ul class="">
-          <li><span>北京</span><a>租赁公司总经理</a><i>50-70万</i></li>
-          <li><span>上海</span><a>项目经理</a><i>50-70万</i></li>
-          <li><span>南京</span><a>java架构师</a><i>50-70万</i></li>
-          <li><span>深圳</span><a>java程序员</a><i>50-70万</i></li>
-          <li><span>苏州</span><a>商品经理</a><i>50-70万</i></li>
+          <% @kaifa.each do |j|%>
+              <li><span><%=j.locate%></span><a href="/vacancy/show?id=<%=j.id %>"><%=j.job %></a><i><%=j.salary %></i></li>
+          <% end %>
+
 
 
         </ul>

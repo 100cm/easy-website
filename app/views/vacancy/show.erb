@@ -1,0 +1,122 @@
+<div class="container">
+
+<div class="vacancy">
+
+  <div class="col-xs-8">
+
+    <div class="module">
+
+      <div class="title-info">
+        <div><h2><%=@job.job %></h2> </div>
+        <div><h4><%=@job.company %></h4></div>
+        <span class="title-triangle"></span>
+
+      </div>
+
+      <div class="job-main clearfix">
+        <div class="left-main">
+          <div><h3 class="salary"><%=@job.salary %></h3></div>
+          <div><p class="basic-info">
+            <span class="fa fa-location-arrow"><%=@job.locate %></span>&nbsp;
+            <span class="fa fa-clock-o"><%= @job.created_at%></span>
+
+          </p>
+        </div>
+       </div>
+        <div></div>
+        <div class="right-main">
+          <% if !current_user.nil?%>
+          <%if Interview.where(:resume_id => @job.id ,:user_id => current_user.id).empty? %>
+          <button class="btn btn-primary" onclick="sub_resume('<%=@job.id %>')">投递简历</button>
+              <%else%>
+              <button class="btn btn-primary" disabled onclick="sub_resume('<%=@job.id %>')">已投递<span class="fa fa-check"></span></button>
+                <%end%>
+
+          <% end%>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+
+
+<div class="duty-title">
+  <h4>主要指责</h4>
+</div>
+      <div class="duty">
+        <%=@job.duty %>
+
+      </div>
+
+<div class="duty-title">
+  <h4>公司简介</h4>
+</div>
+      <div class="introduce">
+
+        <%=@job.introduce %>
+
+
+      </div>
+    </div>
+
+
+  </div>
+
+
+  <div class="col-xs-3">
+
+
+
+  <div class="module"  style="width: 276px" id="hot-job">
+
+    <h2 class="module-header" ><em></em>相关职业</h2>
+<% @hotjob.each do |h| %>
+    <div class="result-list clearfix ">
+      <dt><img src="/assets/company2.png" alt="" height="100%" width="100%"></dt>
+      <dd>
+
+        <h3><a><%=h.job %></a></h3>
+        <p><%=h.company %></p>
+      </dd>
+
+    </div>
+        <% end %>
+
+
+  </div>
+
+
+
+
+  </div>
+
+
+
+</div>
+
+
+
+
+
+</div>
+
+<script>
+
+  function sub_resume(id){
+
+      $.ajax({
+          type:'post',
+          url:"/vacancy/sub_resume",
+          data:{"resume_id":id},
+          success:function(){
+
+              alert("投递成功");
+              window.location.reload();
+
+          }
+      })
+
+
+
+
+  }
+
+</script>

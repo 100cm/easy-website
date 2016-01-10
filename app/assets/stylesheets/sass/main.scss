@@ -5,3 +5,30 @@
 @import "_font-awesome/font-awesome";
 
 @import "footer";
+
+@import "devise";
+
+@import "bootstrap";
+
+@import "vacancy";
+
+
+@import "module";
+@import "tags";
+@import "search-box";
+@import "result";
+@import "custom";
+@import "provincy";
+@import "date";
+.container{
+
+  min-height: 600px;
+
+
+}
+body{
+  font-family: "Microsoft YaHei","微软雅黑","宋体",Arial,Helvetica,Arial,sans-serif;
+ background: #F0F0F0;
+
+
+}

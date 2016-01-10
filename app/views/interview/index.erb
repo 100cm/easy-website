@@ -1,0 +1,92 @@
+<div class="container">
+
+  <div class="vacancy">
+
+<div class="col-xs-8">
+
+  <div class="module">
+
+
+    <div class="module-header">
+
+      全部投递
+
+    </div>
+<%@interview.each do|i| %>
+        <%job =Job.find_by_id(i.resume_id) %>
+    <div class="result-list clearfix">
+
+      <dt><img src="/assets/company.jpg" alt="" height="80" width="120"></dt>
+      <dd>
+
+        <h3><a href="/vacancy/show?id=<%=job.id %>">
+<%=job.job%>
+
+     </a>
+          <span class="label"><%=job.degree %></span></h3>
+        <p><%=job.company %></p>
+        <p><%=job.locate %></p>
+        <p>投递时间:<%=i.created_at %></p>
+      </dd>
+
+      <div style="float: right">
+
+        <% if i.is_invited?
+
+             a="已邀请面试"
+            elsif i.is_refused?
+
+             a="已被拒绝"
+
+             else
+
+             a="公司正在查看"
+           end
+        %>
+        <button disabled class="btn btn-primary"><%=a %><span class="fa fa-check"></span> </button>
+
+
+      </div>
+
+
+    </div>
+
+        <%end%>
+
+</div>
+
+
+
+
+
+
+    </div>
+
+    <div class="col-xs-4">
+
+
+      <div class="module"  style="width: 276px" id="hot-job">
+
+        <h2 class="module-header" ><em></em>其他给你推荐的职位</h2>
+
+        <% @hotjob.each do |h|  %>
+        <div class="result-list clearfix ">
+          <dt><img src="/assets/company.jpg" alt="" height="100%" width="100%"></dt>
+          <dd>
+
+            <h3><a><%=h.job %></a></h3>
+            <p><%=h.company%></p>
+          </dd>
+
+        </div>
+            <% end %>
+
+
+      </div>
+    </div>
+
+  </div>
+
+
+
+</div>
