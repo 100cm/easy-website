@@ -1,6 +1,8 @@
 class ResumeController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
+  before_action :authenticate_user! 
+
   def index
 
     @hotjob=Job.find_by_sql("select * from jobs where id < 3")
